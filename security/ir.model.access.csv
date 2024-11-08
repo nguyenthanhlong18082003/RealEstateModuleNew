@@ -1,0 +1,33 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_res_country_district_user,User res.country.district,model_res_country_district_new,base.group_user,1,1,1,1
+access_res_country_district_manager,Manager res.country.district ,model_res_country_district_new,base.group_system,1,1,1,1
+
+access_res_country_ward_user,User res.country.ward ,model_res_country_ward_new,base.group_user,1,1,1,1
+access_res_country_ward_manager,Manager res.country.ward ,model_res_country_ward_new,base.group_system,1,1,1,1
+
+access_product_direction_new_user,User product.direction.new,model_product_direction_new,base.group_user,1,1,1,1
+access_product_direction_new_manager,Manager product.direction.new,model_product_direction_new,base.group_system,1,1,1,1
+
+access_product_type_new_user,User product.type.new,model_product_type_new,base.group_user,1,1,1,1
+access_product_type_new_manager,Manager product.type.new,model_product_type_new,base.group_system,1,1,1,1
+
+
+access_pcategory_bds_user,User category.bds,model_category_bds,base.group_user,1,1,1,1
+access_pcategory_bds_manager,Manager category.bds,model_category_bds,base.group_system,1,1,1,1
+
+
+access_product_template_daukhach,Đầu khách product.template,model_product_template,RealEstateModuleNew.group_people_daukhach,1,1,1,1
+access_product_template_dauchu,Đầu chủ product.template,model_product_template,RealEstateModuleNew.group_people_dauchu,1,1,1,1
+access_product_template_chunha,Chủ nhà product.template,model_product_template,RealEstateModuleNew.group_people_chunha,1,1,1,1
+
+
+access_product_follow_daukhach,Đầu khách product.follow,model_product_follow,RealEstateModuleNew.group_people_daukhach,1,1,1,0
+access_product_follow_dauchu,Đầu chủ product.follow,model_product_follow,RealEstateModuleNew.group_people_dauchu,1,1,1,1
+access_product_follow_chunha,Chủ nhà product.follow,model_product_follow,RealEstateModuleNew.group_people_chunha,1,1,1,0
+
+
+access_product_image_daukhach,Đầu khách product.image,website_sale.model_product_image,RealEstateModuleNew.group_people_daukhach,1,1,1,1
+
+
+access_res_users_daukhach,Đầu khách res.users,web.model_res_users,RealEstateModuleNew.group_people_daukhach,1,1,1,1

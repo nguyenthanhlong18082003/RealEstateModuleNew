@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <record id="view_tree_category" model="ir.ui.view">
+            <field name="name">category.bds.tree</field>
+            <field name="model">category.bds</field>
+            <field name="arch" type="xml">
+                <tree string="Product Public Categories">
+                    <!-- <field name="sequence" widget="handle" /> -->
+                    <field name="name" string="Loại bất động sản" required="1"/>
+                    <!-- <field name="website_id" groups="website.group_multi_website" /> -->
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_category" model="ir.ui.view">
+            <field name="name">category.bds.form</field>
+            <field name="model">category.bds</field>  <!-- Đảm bảo tên này khớp với model -->
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name" string="Tên loại bất động sản" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_category_bds_template" model="ir.actions.act_window">
+            <field name="name">Loại bất động sản</field>
+            <field name="res_model">category.bds</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids"
+                eval="[(5, 0, 0), (0, 0, {'view_mode': 'tree', 'view_id': ref('view_tree_category')}), (0, 0, {'view_mode': 'form', 'view_id': ref('view_category')})]" />
+        </record>
+
+    </data>
+</odoo>

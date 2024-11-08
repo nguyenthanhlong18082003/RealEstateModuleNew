@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Kế thừa web.layout để thêm thẻ <style> -->
+    <data>
+        <template id="layout_inherit" inherit_id="website_sale.product">
+            <xpath expr="//t[@t-set='additional_title']" position="before">
+
+            </xpath>
+            <xpath expr="//div[@id='product_details']" position="replace">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="container text-center">
+                            <!-- Hiển thị ảnh của contact -->
+                            <t t-if="product.create_uid.image_1920">
+                                <img
+                                    t-attf-src="/web/image/res.users/#{product.create_uid.id}/image_1920"
+                                    alt="User Image"
+                                    class="profile-image rounded-circle"
+                                    style="width: 150px; height: 150px; object-fit: cover;" />
+                            </t>
+                            <t t-else="">
+                                <!-- Nếu không có ảnh, hiển thị ảnh mặc định -->
+                                <img src="/web/static/src/img/placeholder.png"
+                                    alt="No Image"
+                                    class="profile-image rounded-circle"
+                                    style="width: 150px; height: 150px; object-fit: cover;" />
+                            </t>
+
+
+                            <!-- Hiển thị tên của contact -->
+                            <h2 class="profile-name mt-3">
+                                <t t-esc="product.create_uid.name" />
+                            </h2>
+                        </div>
+                        <!-- <p class="profile-posts">Xem thêm <t t-esc="profile.posts_count"/> tin
+                        khác</p> -->
+                    </div>
+
+                    <div class="profile-buttons d-flex flex-column align-items-center">
+                        <a t-att-href="'tel:' + product.create_uid.phone"
+                            class="btn btn-primary btn-phone mb-2">
+                            <i class="fa fa-phone"></i>
+                            <t t-esc="product.create_uid.phone" />
+                        </a>
+
+
+                        <!-- Nút chat Zalo -->
+                        <a t-att-href="'https://zalo.me/' + product.create_uid.number_zalo "
+                            target="_blank" class="zalo-icon ">
+                            <img
+                                src="/RealEstateModuleNew/static/description/icon_detail_product/zalo.png"
+                                alt="Chat Zalo" style="width: 35px; height: 35px;" />
+                        </a>
+                    </div>
+
+
+                    <!-- <div class="profile-buttons d-flex justify-content-center">
+                        <button class="btn-primary btn-phone">
+                            <i class="fa fa-phone" /> 
+                            <t t-esc="product.create_uid.phone" />
+                            </button>
+        
+                        <button class="btn-secondary btn-zalo">
+                            <i class="fa fa-comment" /> Chat qua Zalo </button>
+        
+                        <button class="btn-secondary btn-email">
+                            <i class="fa fa-envelope" /> Gửi email </button>
+        
+                        <button class="btn-secondary btn-contact">
+                            <i class="fa fa-reply" /> Yêu cầu liên hệ lại </button>
+                    </div> -->
+                </div>
+                <div id="o_product_terms_and_share"></div>
+                <div class="col-lg-12 mt-md-4">
+                    <div class="container">
+                        <div class="col">
+                            <div class="col ">
+                                <h3>
+                                    <t t-esc="product.name" />
+                                </h3>
+                                <hr class="mt-3" />
+                                <div class="col mb-3 pb-3">
+                                    <span>
+                                        <!-- <strong>Địa chỉ </strong> -->
+                                        <i style="margin-right: 0.5rem; margin-left: 5.2rem;"></i>
+                                        <h5>
+                                            <img
+                                                src="/RealEstateModuleNew/static/description/icon_detail_product/vitri.png"
+                                                alt="Product Icon vitri"
+                                                class="img-vitri.png"
+                                                style="width: 30px; height: 30px; " />
+
+                                                <t
+                                                t-esc="product.alley" />
+                                                <t t-esc="product.street" />
+                                            , <t
+                                                t-esc="product.ward_id.name" />, <t
+                                                t-esc="product.district_id.name" />, <t
+                                                t-esc="product.state_id.name" />. </h5>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- <div id="carouselExampleControls" class="carousel slide"
+                                data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <t t-if="product.additional_images_2">
+                                        <t t-foreach="product.additional_images_2" t-as="image">
+                                            <div
+                                                t-att-class="'carousel-item ' + ('active' if image_index == 0 else '')">
+                                                <img
+                                                    t-att-src="'/web/image/%s' % image.id"
+                                                    class="img-fluid w-100 rounded"
+                                                    style="height: 500px; object-fit: cover;" />
+                                            </div>
+                                        </t>
+                                    </t>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div> -->
+
+                            <!-- <div class="container-fluid">
+                                <div class="row">
+                                    Hình ảnh lớn bên trái (Ảnh 1)
+                                    <div class="col-md-8 mb-3">
+                                        <div class="position-relative">
+                                            <span class="position-absolute top-2 start-2 badge bg-success">
+                                                Đang mở bán
+                                            </span>
+                                            <t t-if="product.additional_images_2">
+                                                <img t-att-src="'/web/image/%s' % product.additional_images_2[0].id"
+                                                     class="img-fluid w-100 rounded"
+                                                     style="height: 500px; object-fit: cover;" />
+                                            </t>
+                                            Overlay thông tin
+                                            <div class="position-absolute bottom-3 start-3 text-white">
+                                                <div class="d-flex gap-4">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa fa-home me-2"></i>
+                                                        <div>
+                                                            <t t-esc="product.product_type_id.name" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa fa-chart-area me-2"></i>
+                                                        <div>
+                                                            <t t-esc="product.real_acreage" />
+                                                            <div>m2</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                                    Lưới 2x2 hình ảnh bên phải (Ảnh 2-5)
+                                    <div class="col-md-4">
+                                        <div class="row g-2">
+                                            <t t-foreach="product.additional_images_2[1:5]" t-as="image">
+                                                <div class="col-6">
+                                                    <img t-att-src="'/web/image/%s' % image.id"
+                                                         class="img-fluid w-100 rounded"
+                                                         style="height: 245px; object-fit: cover;" />
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+                            <div class="row mb-3 pb-3 row-cols-sm-1">
+                                <div class="col col-12 col-sm-12  mt-md-2">
+                                    <span style="color: red;">
+                                        <strong>Mức giá</strong>
+                                        <i
+                                            style="margin-right: 0.5rem; margin-left: 4.5rem;"></i>
+                                        <t
+                                            t-esc="product.offer_price" /> vnd </span>
+                                    <hr class="mt-1 custom-hr-1" style="width: 20%;" />
+                                </div>
+                                <div class="col col-12 col-sm-12  mt-md-2">
+                                    <span>
+                                        <strong>Diện tích sổ </strong>
+                                        <i
+                                            style="margin-right: 0.5rem; margin-left: 2.8rem;"></i>
+                                        <t
+                                            t-esc="product.acreage" /> m2 <hr
+                                            class="mt-1 custom-hr-1" style="width: 20%;" />
+                                    </span>
+
+                                </div>
+                                <div class="col col-12 col-sm-12  mt-md-2 ">
+                                    <span>
+                                        <strong>Diện tích thực tế </strong>
+                                        <i
+                                            style="margin-right: 0.5rem; margin-left: 0.5rem;"></i>
+                                        <t
+                                            t-esc="product.real_acreage" /> m2 </span>
+                                    <hr class="mt-1 custom-hr-1" style="width: 20%;" />
+                                </div>
+                            </div>
+
+                            <t t-if="product.description">
+                                <div class="row mb-3 pb-3">
+                                    <div class="col">
+                                        <span class="pb-3">
+                                            <h4>Thông tin mô tả</h4>
+                                        </span>
+                                        <br />
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="mx-2 px-2">
+                                                        <t t-esc="product.description" />
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+
+                            <div class="row ">
+                                <div class="col">
+                                    <span>
+                                        <h4>Tổng quan <t t-esc="product.name" /></h4>
+                                    </span>
+                                    <br />
+                                    <div class="container pb-3 ">
+                                        <div class="row row-cols-1 row-cols-lg-2">
+                                            <t t-if="product.acreage">
+                                                <div class="col">
+
+                                                    <hr class="mt-1 custom-hr" />
+                                                    <span>
+                                                        <img
+                                                            src="/RealEstateModuleNew/static/description/icon_detail_product/dientich.png"
+                                                            alt="Product Icon"
+                                                            class="img-dientich"
+                                                            style="width: 25px; height: 25px; " />
+                                                        <i
+                                                            class="fa fa-solid "
+                                                            style=" margin-left: 0.3rem;"></i>
+                                                        <!-- <strong>Diện tích tích </strong> -->
+                                                        <i
+                                                            class="fa fa-solid "
+                                                            style="margin-right: 0.5rem; margin-left: 2rem;"></i>
+                                                        <t
+                                                            t-esc="product.acreage" /> m2 </span>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                            <t t-if="product.real_width">
+                                                <div class="col">
+                                                    <hr class="mt-1 custom-hr" />
+                                                    <span>
+                                                        <img
+                                                            src="/RealEstateModuleNew/static/description/icon_detail_product/chieurong.png"
+                                                            alt="Product Icon"
+                                                            class="img-chieurong"
+                                                            style="width: 25px; height: 25px; " />
+                                                        <i
+                                                            class="fa fa-solid "
+                                                            style=" margin-left: 0.3rem;"></i>
+                                                        <!-- <strong>chiều rộng</strong> -->
+                                                        <i
+                                                            class="fa fa-solid "
+                                                            style=" margin-right: 0.5rem; margin-left: 2rem;"></i>
+                                                        <t
+                                                            t-esc="product.real_width" /> m chiều
+                                                        rộng </span>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                            <t t-if="product.direction_id">
+                                                <div class="col">
+                                                    <img
+                                                        src="/RealEstateModuleNew/static/description/icon_detail_product/huongnha.png"
+                                                        alt="Product Icon"
+                                                        class="img-huongnha"
+                                                        style="width: 25px; height: 25px; " />
+                                                    <i class="fa fa-solid "
+                                                        style=" margin-left: 0.3rem;"></i>
+                                                    <span>
+                                                        <!-- <strong>Hướng nhà: </strong> -->
+                                                        <i class="fa fa-solid fa-vector-square_1"
+                                                            style="margin-right: 0.5rem; margin-left: 2rem;"></i>
+                                                        <t t-esc="product.direction_id.name" />
+                                                    </span>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                            <t t-if="product.nums_bedrooms">
+                                                <div class="col">
+                                                    <img
+                                                        src="/RealEstateModuleNew/static/description/icon_detail_product/phongngu.png"
+                                                        alt="Product Icon"
+                                                        class="img-phongngu"
+                                                        style="width: 25px; height: 25px; " />
+                                                    <i class="fa fa-solid "
+                                                        style=" margin-left: 0.5rem;"></i>
+                                                    <span>
+                                                        <!-- <strong>Số phòng ngủ: </strong> -->
+                                                        <i class="fa fa-solid fa-vector-square_1"
+                                                            style="margin-right: 0.5rem; margin-left: 2rem;"></i>
+                                                        <t
+                                                            t-esc="product.nums_bedrooms" /> phòng </span>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                            <t t-if="product.offer_price">
+                                                <div class="col">
+                                                    <img
+                                                        src="/RealEstateModuleNew/static/description/icon_detail_product/giado.png"
+                                                        alt="Product Icon"
+                                                        class="img-giado"
+                                                        style="width: 25px; height: 25px; " />
+                                                    <i class="fa fa-solid "
+                                                        style=" margin-left: 0.5rem;"></i>
+                                                    <span style="color: red;">
+                                                        <!-- <strong>Mức giá: </strong> -->
+                                                        <i
+                                                            class="fa fa-solid fa-vector-square_1"
+                                                            style="margin-right: 0.5rem; margin-left: 2rem;"></i>
+                                                        <t
+                                                            t-esc="product.offer_price" /> vnd </span>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                            <t t-if="product.way_in">
+                                                <div class="col">
+                                                    <img
+                                                        src="/RealEstateModuleNew/static/description/icon_detail_product/duongvao.png"
+                                                        alt="Product Icon"
+                                                        class="img-duongvao"
+                                                        style="width: 25px; height: 25px; " />
+                                                    <i class="fa fa-solid "
+                                                        style=" margin-left: 0.5rem;"></i>
+                                                    <span>
+                                                        <!-- <strong>Đường vào: </strong> -->
+                                                        <i class="fa fa-solid fa-vector-square_1"
+                                                            style="margin-right: 0.5rem; margin-left: 2rem;"></i>
+                                                        <t
+                                                            t-esc="product.way_in" /> m đường vào</span>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                            <t t-if="product.floors">
+                                                <div class="col">
+                                                    <img
+                                                        src="/RealEstateModuleNew/static/description/icon_detail_product/tang.png"
+                                                        alt="Product Icon"
+                                                        class="img-tang"
+                                                        style="width: 25px; height: 25px; " />
+                                                    <i class="fa fa-solid "
+                                                        style=" margin-left: 0.5rem;"></i>
+                                                    <span>
+                                                        <!-- <strong>Số tầng: </strong> -->
+                                                        <i class="fa fa-solid fa-vector-square_1"
+                                                            style="margin-right: 0.5rem; margin-left: 2rem;"></i>
+                                                        <t
+                                                            t-esc="product.floors" /> tầng </span>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                            <t t-if="product.nums_bath">
+                                                <div class="col">
+                                                    <img
+                                                        src="/RealEstateModuleNew/static/description/icon_detail_product/toilet.png"
+                                                        alt="Product Icon"
+                                                        class="img-toilet"
+                                                        style="width: 25px; height: 25px; " />
+                                                    <i class="fa fa-solid "
+                                                        style=" margin-left: 0.5rem;"></i>
+                                                    <span>
+                                                        <!-- <strong>Số toilet: </strong> -->
+                                                        <i class="fa fa-solid fa-vector-square_1"
+                                                            style="margin-right: 0.5rem; margin-left: 2rem;"></i>
+                                                        <t
+                                                            t-esc="product.nums_bath" /> toilet </span>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                            <t t-if="product.balcony">
+                                                <div class="col">
+                                                    <img
+                                                        src="/RealEstateModuleNew/static/description/icon_detail_product/bancong.png"
+                                                        alt="Product Icon"
+                                                        class="img-bancong"
+                                                        style="width: 25px; height: 25px; " />
+                                                    <i class="fa fa-solid "
+                                                        style=" margin-left: 0.5rem;"></i>
+                                                    <span>
+                                                        <!-- <strong>Số ban công: </strong> -->
+                                                        <i class="fa fa-solid fa-vector-square_1"
+                                                            style="margin-right: 0.5rem; margin-left: 2rem;"></i>
+                                                        <t
+                                                            t-esc="product.balcony" /> ban công </span>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                            <t t-if="product.facade">
+                                                <div class="col">
+                                                    <img
+                                                        src="/RealEstateModuleNew/static/description/icon_detail_product/mattien.png"
+                                                        alt="Product Icon"
+                                                        class="img-mattien"
+                                                        style="width: 25px; height: 25px; " />
+                                                    <i class="fa fa-solid "
+                                                        style=" margin-left: 0.5rem;"></i>
+                                                    <span>
+                                                        <!-- <strong>Mặt tiền: </strong> -->
+                                                        <i class="fa fa-solid fa-vector-square_1"
+                                                            style="margin-right: 0.5rem; margin-left: 2rem;"></i>
+                                                        <t
+                                                            t-esc="product.facade" /> m mặt tiền </span>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                            <t t-if="product.real_length">
+                                                <div class="col">
+                                                    <img
+                                                        src="/RealEstateModuleNew/static/description/icon_detail_product/chieudai.png"
+                                                        alt="Product Icon"
+                                                        class="img-chiudai"
+                                                        style="width: 25px; height: 25px; " />
+                                                    <i class="bi bi-activity"></i>
+                                                    <i class="fa fa-solid fa-ruler"
+                                                        style=" margin-left: 0.5rem;"></i>
+                                                    <span>
+                                                        <!-- <strong>Chiều dài: </strong> -->
+                                                        <i class="fa fa-solid fa-vector-square_1"
+                                                            style="margin-right: 0.5rem; margin-left: 2rem;"></i>
+                                                        <t
+                                                            t-esc="product.real_length" /> m chiều
+                                                        dài </span>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                            <t t-if="product.supp_ggmap">
+                                                <div>
+
+                                                    <a t-att-href="product.supp_ggmap"
+                                                        target="_blank">
+                                                        <img
+                                                            src="/RealEstateModuleNew/static/description/icon_detail_product/map.png"
+                                                            alt="Product Icon"
+                                                            class="img-map"
+                                                            style="width: 25px; height: 25px; " />
+                                                    <i
+                                                            class="fa fa-solid "
+                                                            style=" margin-left: 0.5rem;"></i> Xem
+                                                        vị trí trên Google Maps</a>
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col ">
+                                    <button type="button"
+                                        class="btn btn-primary btn-lg fancy-button "
+                                        id="toggle-info-button">
+                                        Hiển thị thông tin chủ nhà
+                                    </button>
+                                    <br />
+                                    <div class="container mt-3 opacity_display transition_display"
+                                        id="owner-info">
+                                        <div class="row row-cols-1 row-cols-lg-2">
+                                            <!-- Thông tin chủ nhà -->
+                                            <t t-if="product.sell_name">
+                                                <div>
+                                                    <span>
+                                                        <hr class="mt-1 custom-hr" />
+                                                        <img
+                                                            src="/RealEstateModuleNewModule/static/description/icon_detail_product/chunha.png"
+                                                            alt="Product Icon"
+                                                            class="img-chunha"
+                                                            style="width: 25px; height: 25px; "
+                                                        />
+                                                        <strong>Tên chủ nhà:</strong>
+                                                        <t t-esc="product.sell_name" />
+                                                        <hr class="mt-1 custom-hr" />
+                                                    </span>
+                                                </div>
+                                            </t>
+                                            <!-- <t t-if="product.sell_phone">
+                                                <div>
+                                                    <hr class="mt-1 custom-hr" />
+                                                    <img
+                                                        src="/RealEstateModuleNewModule/static/description/icon_detail_product/sodienthoai.png"
+                                                        alt="Product Icon"
+                                                        class="img-sodienthoai"
+                                                        style="width: 25px; height: 25px"
+                                                    />
+                                                    <span>
+                                                        <strong>Số điện thoại</strong>
+                                                    </span>
+                                                    <t t-esc="product.sell_phone" />
+                                                    <hr class="mt-1 custom-hr" />
+                                                </div>
+                                            </t> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- <t t-foreach="product.create_uid.product_for_sale_ids"
+                                    t-as="product_for_sale">
+                                    <h2>
+                                        <t t-esc="product_for_sale.name" />
+                                    </h2>
+                                </t> -->
+                                <div class="container">
+                                    <div
+                                        class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="mb-0">Bất động sản dành cho bạn</h5>
+                                        <div class="row">
+                                            <button
+                                                class="btn btn-outline-secondary btn-sm slider-prev">
+                                                <i class="fa fa-chevron-left" />
+                                            </button>
+                                            <button
+                                                class="btn btn-outline-secondary btn-sm slider-next">
+                                                <i class="fa fa-chevron-right" />
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="products-slider">
+                                        <t t-foreach="product.create_uid.product_for_sale_ids"
+                                            t-as="product_for_sale">
+                                            <div class="card property-card">
+                                                <!-- Ảnh và số lượng ảnh -->
+                                                <div class="position-relative">
+                                                    <img
+                                                        t-att-src="'/web/image?model=product.template&amp;field=image_1920&amp;id=' + str(product_for_sale.id)"
+                                                        class="card-img-top property-image" />
+                                                    <span class="image-count">
+                                                        <i class="fa fa-image" />
+                                                        <t
+                                                            t-esc="len(product_for_sale.product_template_image_ids)" />
+                                                    </span>
+                                                </div>
+
+                                                <div class="card-body p-3">
+                                                    <!-- Tiêu đề -->
+                                                    <h6 class="card-title text-truncate mb-2">
+                                                        <t t-esc="product_for_sale.name" />
+                                                    </h6>
+
+                                                    <!-- Giá và diện tích -->
+                                                    <!-- <div class="d-flex justify-content-between
+                                                    align-items-center mb-2">
+                                                        <span class="text-danger fw-bold">
+                                                            <t t-esc="'{:,.1f}'.format(product_for_sale.list_price)"/> tỷ
+                                                        </span>
+                                                        <span>
+                                                            <t t-esc="int(product_for_sale.area)"/> m²
+                                                        </span>
+                                                    </div> -->
+
+                                                    <!-- Địa chỉ -->
+                                                    <!-- <div class="mb-2">
+                                                        <i class="fa fa-map-marker text-muted"/>
+                                                        <small class="text-muted ms-1">
+                                                            <t t-esc="product_for_sale.district"/>, <t t-esc="product_for_sale.city"/>
+                                                        </small>
+                                                    </div> -->
+
+                                                    <!-- Thời gian đăng và yêu thích -->
+                                                    <!-- <div class="d-flex justify-content-between
+                                                    align-items-center">
+                                                        <small class="text-muted">
+                                                            Đăng <t t-field="product_for_sale.create_date" t-options='{"widget": "relative"}'/>
+                                                        </small>
+                                                        <button class="btn btn-link p-0 favorite-btn" t-att-data-product-id="product_for_sale.id">
+                                                            <i t-attf-class="fa #{product_for_sale.is_favorite and 'fa-heart' or 'fa-heart-o'}"/>
+                                                        </button>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

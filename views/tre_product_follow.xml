@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="view_product_follow_tree" model="ir.ui.view">
+            <field name="name">product.follow.tree</field>
+            <field name="model">product.follow</field>
+            <field name="arch" type="xml">
+                <tree string="Followers">
+                    <field name="create_uid" />
+                    <field name="is_approved" />
+                    <button string="Xóa" type="object" name="action_reject" class="btn-danger"
+                        confirm="Bạn có chắc chắn muốn xóa yêu cầu này?" />
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

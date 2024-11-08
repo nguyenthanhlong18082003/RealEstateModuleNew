@@ -1,0 +1,120 @@
+<odoo>
+    <data>
+        <record id="view_sale_product_form" model="ir.ui.view">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="replace">
+                    <form string="Thông tin bán">
+                        <sheet>
+                            <group>
+                                <group>
+                                    <field name="isApprove" invisible="1" />
+                                    <field name="isReadonly" invisible="1" />
+                                    <field name="product_parent"
+                                        context="{'form_view_ref':'RealEstateModuleNew.view_product'}" />
+                                    <span class="o_form_label o_td_label" name="address_name">
+                                        <b>Địa chỉ</b>
+                                    </span>
+                                    <div class="o_address_format">
+                                        <!-- <field name="street"
+                                            class="o_address_street"
+                                        />
+                                        <field name="ward_id" class="o_address_state"
+                                            options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True, &quot;no_edit&quot;: True}" />
+                                        <field name="district_id" class="o_address_state"
+                                            options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True, &quot;no_edit&quot;: True}" />
+                                        <field name="province_id" class="o_address_zip w-100"
+                                            options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True, &quot;no_edit&quot;: True}" /> -->
+                                        <field name="street" placeholder="Đường"
+                                            class="o_address_street" />
+                                        <field name="alley" placeholder="Ngõ, số nhà"
+                                            class="o_address_street_so" />
+                                        <field name="ward_id" placeholder="Phường xã"
+                                        />
+                                        <field name="district_id" placeholder="Quận huyện"
+                                        />
+                                        <field name="state_id" class="o_address_state"
+                                            placeholder="City"
+                                            options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"
+                                            context="{'country_id': country_id, 'default_country_id': country_id}" />
+                                        <div name="partner_address_country"
+                                            class="d-flex justify-content-between">
+                                            <field name="country_id" placeholder="Country"
+                                                class="o_address_country"
+                                                options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
+                                        </div>
+                                    </div>
+                                    <field name="supp_ggmap" placeholder="Nhập đường link"
+                                    />
+                                </group>
+                            </group>
+                            <group string="Thông tin mô tả">
+                                <field colspan="2" name="description" nolabel="1"
+                                    placeholder="Nhập nội dung..." />
+                            </group>
+                            <group string="Thông tin chi tiết">
+                                <group>
+                                    <field name="product_type_id"
+                                        options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}">
+                                        <tree>
+                                            <field name="name" />
+                                            <!-- <field name="image" widget="image" /> -->
+                                        </tree>
+                                    </field>
+                                    <field name="acreage" placeholder="Diện tích"
+                                    />
+                                    <field name="real_acreage" placeholder="Diện tích thật"
+                                    />
+                                    <field name="way_in" placeholder="Ngõ vào"
+                                    />
+                                    <field name="facade" placeholder="Mặt tiền"
+                                    />
+                                    <field name="real_length" placeholder="Chiều dài"
+                                    />
+                                </group>
+                                <group>
+                                    <field name="nums_bedrooms" placeholder="Số phòng ngủ"
+                                    />
+                                    <field name="nums_bath" placeholder="Số nhà vệ sinh"
+                                    />
+                                    <field name="floors" placeholder="Số tầng"
+                                    />
+                                    <field name="interior" placeholder="Nội thất"
+                                    />
+                                    <field name="direction_id"
+                                        options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}">
+                                        <tree>
+                                            <field name="name" />
+                                            <!-- <field name="image" widget="image" /> -->
+                                        </tree>
+                                    </field>
+                                    <field name="real_width" placeholder="Chiều rộng" />
+                                </group>
+                            </group>
+                            <group string="Thông tin giá">
+                                <group>
+                                    <field name="offer_price"
+                                        string="Giá chào hợp đồng (Triệu VND)"
+                                    />
+                                    <field name="close_price" string="Giá chốt (Triệu VND)"
+                                    />
+                                    <field name="bonus_money_percent"
+                                        string="% Hoa hồng (Triệu VND)" />
+                                    <field name="bonus_money" string="Hoa hồng"
+                                    />
+                                    <field name="create_uid" string="Tài khoản đã tạo"
+                                        groups="RealEstateModuleNew.group_people_dauchu,RealEstateModuleNew.group_people_daukhach"
+                                        readonly="1" />
+                                </group>
+                            </group>
+
+                        </sheet>
+                    </form>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,28 @@
+<odoo>
+    <data noupdate="0">
+        <record id="module_catagory_people" model="ir.module.category">
+            <field name="name">People</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="group_people_daukhach" model="res.groups">
+            <field name="name">Đầu khách</field>
+            <field name="category_id" ref="module_catagory_people"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_people_chunha" model="res.groups">
+            <field name="name">Chủ nhà</field>
+            <field name="category_id" ref="module_catagory_people"/>
+        </record>
+        
+        <record id="group_people_dauchu" model="res.groups">
+            <field name="name">Đầu chủ</field>
+            <field name="category_id" ref="module_catagory_people"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_system'))]"/>
+        </record>
+    </data>
+    
+    
+    
+</odoo>

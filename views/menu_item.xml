@@ -1,0 +1,19 @@
+<odoo>
+    <menuitem id="menu_real_estate" name="Real Estate New" sequence="1" />
+
+    <menuitem id="menu_real_estate_1"
+        name="Real Estate "
+        parent="menu_real_estate"
+        action="action_product_template"
+        sequence="1"   
+    />
+
+    <menuitem id="menu_category_bds"
+        name="Category"
+        parent="menu_real_estate"
+        action="action_category_bds_template"
+        sequence="2"
+        groups="group_people_dauchu"
+    />
+
+</odoo>

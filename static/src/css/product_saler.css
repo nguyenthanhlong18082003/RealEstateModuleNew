@@ -1,0 +1,58 @@
+.products-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding: 0.5rem 0;
+}
+
+.property-card {
+    flex: 0 0 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.property-image {
+    height: 200px;
+    object-fit: cover;
+}
+
+.image-count {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.favorite-btn {
+    color: #dc3545;
+}
+
+.favorite-btn:hover {
+    color: #c82333;
+}
+
+.slider-prev, .slider-next {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+}
+
+/* Ẩn thanh cuộn ngang */
+.products-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.products-slider {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
